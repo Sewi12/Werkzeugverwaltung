@@ -1,14 +1,9 @@
-WERKZEUGVERWALTUNG V4
+WERKZEUGVERWALTUNG V5
 
-V4 legt den Schwerpunkt auf ein echtes App-Layout:
-- ruhige, kompakte Oberfläche
-- feste mobile Navigation unten
-- große Karten statt frei fliegender Website-Elemente
-- Suche und Filter als App-Controls
-- Werkzeugkarten mit Status und Standort
-- Einstellungen als eigenes App-Fenster
-- Inventarnummer, Standort-Vorauswahl, Verleih/Rückgabe
-- Datensicherung exportieren/wiederherstellen
+Neu gegenüber V4:
+- Import älterer Sicherungsdateien kompatibel
+- Sicherungen aus V2/V3/V4 werden akzeptiert, auch wenn das frühere app-Feld fehlt
+- Bestehende V4-Oberfläche und Funktionen bleiben erhalten
 
-Upload:
-Alle Dateien aus diesem Ordner auf GitHub hochladen und die vorhandene index.html ersetzen.
+GitHub:
+Alle Dateien hochladen und index.html ersetzen.
