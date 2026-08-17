@@ -1,15 +1,17 @@
-Werkzeuginventur V1 – Prototyp
+Werkzeugverwaltung V2
 
-Start:
-- index.html im Browser öffnen.
-- Werkzeuge werden lokal im Browser gespeichert.
-- V1 enthält Erfassen, Suchen/Filtern, Verleihen und Rückgabe.
+Enthalten:
+- Werkzeugverwaltung als App-Titel
+- Inventarnummer
+- Standort-Vorauswahl
+- Standorte in den Einstellungen verwalten
+- Datensicherung exportieren und wieder einspielen
+- Werkzeug suchen und filtern
+- Verleihen und Rückgabe
 
-Nächste Ausbaustufen:
-- echte QR-Codes pro Werkzeug
-- Fotoaufnahme
-- Personenverwaltung
+Nächste Schritte:
+- echter QR-Code-Scanner und QR-Code-Erzeugung
+- Foto je Werkzeug
+- Personenverwaltung für „Verliehen an“
+- dauerhafte Cloud-Synchronisierung / Anmeldung
 - Inventurmodus
-- Datenexport/Backup und Wiederherstellung
-- dauerhafte Cloud-Synchronisation, damit Daten bei Neuinstallation erhalten bleiben
-- iPhone/Android-App/PWA
