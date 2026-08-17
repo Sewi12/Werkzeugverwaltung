@@ -1,9 +1,16 @@
-WERKZEUGVERWALTUNG V5
+WERKZEUGVERWALTUNG V7
 
-Neu gegenüber V4:
-- Import älterer Sicherungsdateien kompatibel
-- Sicherungen aus V2/V3/V4 werden akzeptiert, auch wenn das frühere app-Feld fehlt
-- Bestehende V4-Oberfläche und Funktionen bleiben erhalten
+Neue Funktionen:
+- Foto je Werkzeug (auch Kamera auf mobilen Geräten)
+- Kategorien als Vorauswahl in Einstellungen
+- Verleihhistorie
+- QR-Code je Werkzeug
+- QR-Code kann aus der Werkzeugansicht gedruckt werden
+- Verleihen an und Rückgabe bleiben frei eingabebasiert
+- Standort-Vorauswahl
+- Datensicherung inkl. Kategorien
+- V6 App-Layout bleibt erhalten
+- alte Sicherungen bleiben kompatibel
 
-GitHub:
-Alle Dateien hochladen und index.html ersetzen.
+Hinweis:
+QR-Codes nutzen die Inventar-/Werkzeug-ID als eindeutige Kennung.
