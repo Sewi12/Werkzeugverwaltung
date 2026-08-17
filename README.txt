@@ -1,23 +1,53 @@
-WERKZEUGVERWALTUNG V9
+WERKZEUGVERWALTUNG V10
 
-Komplett neu aufgebaute Oberfläche statt Weiterentwicklung der alten Modal-Struktur.
+V10 wurde komplett neu strukturiert.
 
-Bereiche:
-- Übersicht
-- Werkzeug hinzufügen/bearbeiten
-- Werkzeugdetails
-- Einstellungen
-
-Funktionen:
-- Foto
+FESTGELEGTER FUNKTIONSUMFANG
+Werkzeug:
 - Inventarnummer
-- Hersteller/Modell/Seriennummer
-- Kategorien und Standorte als Vorauswahl
-- Verleihen an / Rückgabe / Verleihhistorie
-- QR-Code je Werkzeug und Druck
-- Suche und Statusfilter
-- Datensicherung und Wiederherstellung
-- kompatibel mit vorhandenen Sicherungsdateien, sofern Werkzeuge als Array enthalten sind
+- Bezeichnung
+- Hersteller
+- Modell
+- Seriennummer
+- Kategorie (Vorauswahl)
+- Standort (Vorauswahl)
+- Foto
+- Bemerkung
 
-GitHub:
-Alle Dateien aus diesem Ordner hochladen und index.html ersetzen.
+Verleih:
+- Verliehen an (Freitext)
+- Verleihdatum
+- Rückgabe
+- Verleihhistorie
+
+QR:
+- QR-Code pro Werkzeug
+- QR-Code anzeigen
+- QR-Code drucken
+
+Einstellungen:
+- Standorte verwalten
+- Kategorien verwalten
+- vollständige Datensicherung erstellen
+- vollständige Datensicherung wiederherstellen
+
+Übersicht:
+- Gesamt / verfügbar / verliehen
+- Suche
+- Filter
+- Werkzeugliste
+
+BEWUSST NICHT ENTHALTEN
+- Kaufdatum
+- Kaufpreis
+- Zustand
+- Personenverwaltung
+- Inventurmodus
+
+WICHTIG
+V10 verwendet getrennte Seiten für Übersicht, Hinzufügen, Werkzeugdetails und Einstellungen.
+Es gibt kein gemeinsames Modal/Fenster mehr, in dem Inhalte vermischt werden können.
+
+DATENSICHERUNG
+Die Sicherung enthält Werkzeuge inklusive Fotos und Verleihhistorie sowie Standorte und Kategorien.
+Alte Sicherungen werden akzeptiert, sofern sie ein tools-Array enthalten.

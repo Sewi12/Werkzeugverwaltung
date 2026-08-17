@@ -7,43 +7,43 @@
 <link rel="manifest" href="manifest.json">
 <title>Werkzeugverwaltung</title>
 <style>
-:root{--bg:#f5f6f8;--card:#fff;--text:#17202b;--muted:#78818d;--line:#e5e8ec;--dark:#111827;--good:#18864b;--bad:#b83a32;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);min-height:100%}body{padding-bottom:78px}
+:root{--bg:#f4f5f7;--card:#fff;--text:#17202b;--muted:#78818d;--line:#e3e7eb;--dark:#111827;--good:#18864b;--bad:#b83a32;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--text);min-height:100%}body{padding-bottom:76px}
 button,input,select,textarea{font:inherit}button{cursor:pointer}
-.app{max-width:720px;margin:auto;padding:0 15px}.top{height:74px;display:flex;align-items:center;justify-content:space-between}.title{font-size:24px;font-weight:800;letter-spacing:-.5px}.gear{width:42px;height:42px;border:0;border-radius:14px;background:#fff;box-shadow:0 2px 12px #0000000d;font-size:19px}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 2px 12px #00000009}.stat small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.stat strong{font-size:24px}
-.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.action{height:51px;border-radius:15px;border:1px solid var(--line);background:#fff;color:var(--text);font-weight:750;box-shadow:0 2px 12px #00000009}.action.main{background:var(--dark);border-color:var(--dark);color:#fff}
-.search{height:48px;width:100%;border:1px solid var(--line);border-radius:15px;padding:0 15px;background:#fff;box-shadow:0 2px 12px #00000008;outline:0;margin-bottom:10px}
-.filters{display:flex;gap:7px;margin-bottom:13px}.filter{padding:8px 13px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px}.filter.active{background:var(--dark);border-color:var(--dark);color:#fff}
-.list{display:flex;flex-direction:column;gap:9px}.tool{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 2px 12px #00000008}.toolrow{display:flex;gap:11px;align-items:center}.avatar{width:46px;height:46px;border-radius:13px;background:#eef1f4;display:grid;place-items:center;font-size:21px;overflow:hidden;flex:none}.avatar img{width:100%;height:100%;object-fit:cover}.toolmain{min-width:0;flex:1}.toolname{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{color:var(--muted);font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.badge{font-size:11px;font-weight:750;padding:6px 8px;border-radius:99px;white-space:nowrap}.ok{background:#e7f6ee;color:var(--good)}.out{background:#fdeae8;color:var(--bad)}.toolfoot{display:flex;justify-content:space-between;border-top:1px solid #f0f1f3;margin-top:11px;padding-top:9px;color:var(--muted);font-size:11px}.empty{text-align:center;background:#fff;border:1px dashed #d7dce1;border-radius:17px;padding:35px 20px;color:var(--muted)}
-.bottom{position:fixed;bottom:0;left:0;right:0;height:68px;background:#fffffff2;backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:20}.nav{max-width:720px;height:100%;margin:auto;display:grid;grid-template-columns:1fr 1fr}.nav button{background:none;border:0;color:var(--muted);font-size:11px;font-weight:700}.nav button span{display:block;font-size:21px;margin-bottom:2px}.nav button.active{color:var(--dark)}
-.page{display:none}.page.active{display:block}.page-head{height:74px;display:flex;align-items:center;gap:11px}.back{width:40px;height:40px;border:0;border-radius:13px;background:#fff;box-shadow:0 2px 12px #0000000a}.page-title{font-size:21px;font-weight:800}.sub{color:var(--muted);font-size:12px;margin-top:2px}
+.app{max-width:720px;margin:auto;padding:0 15px}
+.page{display:none;min-height:calc(100vh - 76px)}.page.active{display:block}
+.top{height:76px;display:flex;align-items:center;justify-content:space-between}.title{font-size:24px;font-weight:800}.gear{width:42px;height:42px;border:1px solid var(--line);border-radius:14px;background:#fff;font-size:19px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px;box-shadow:0 2px 12px #00000009}.stat small{display:block;color:var(--muted);font-size:12px;margin-bottom:5px}.stat strong{font-size:24px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}.action{height:51px;border-radius:15px;border:1px solid var(--line);background:#fff;color:var(--text);font-weight:750}.action.main{background:var(--dark);border-color:var(--dark);color:#fff}
+.search{height:48px;width:100%;border:1px solid var(--line);border-radius:15px;padding:0 15px;background:#fff;outline:0;margin-bottom:10px}.filters{display:flex;gap:7px;margin-bottom:13px}.filter{padding:8px 13px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);font-size:12px}.filter.active{background:var(--dark);border-color:var(--dark);color:#fff}
+.list{display:flex;flex-direction:column;gap:9px}.tool{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px}.toolrow{display:flex;gap:11px;align-items:center}.avatar{width:46px;height:46px;border-radius:13px;background:#eef1f4;display:grid;place-items:center;font-size:21px;overflow:hidden;flex:none}.avatar img{width:100%;height:100%;object-fit:cover}.toolmain{min-width:0;flex:1}.toolname{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.meta{color:var(--muted);font-size:12px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.badge{font-size:11px;font-weight:750;padding:6px 8px;border-radius:99px;white-space:nowrap}.ok{background:#e7f6ee;color:var(--good)}.out{background:#fdeae8;color:var(--bad)}.toolfoot{display:flex;justify-content:space-between;border-top:1px solid #f0f1f3;margin-top:11px;padding-top:9px;color:var(--muted);font-size:11px}
+.empty{text-align:center;background:#fff;border:1px dashed #d7dce1;border-radius:17px;padding:35px 20px;color:var(--muted)}
+.bottom{position:fixed;bottom:0;left:0;right:0;height:68px;background:#fffffff4;backdrop-filter:blur(12px);border-top:1px solid var(--line);z-index:20}.nav{max-width:720px;height:100%;margin:auto;display:grid;grid-template-columns:1fr 1fr}.nav button{background:none;border:0;color:var(--muted);font-size:11px;font-weight:700}.nav button span{display:block;font-size:21px;margin-bottom:2px}.nav button.active{color:var(--dark)}
+.page-head{height:76px;display:flex;align-items:center;gap:11px}.back{width:40px;height:40px;border:1px solid var(--line);border-radius:13px;background:#fff;font-size:24px}.page-title{font-size:21px;font-weight:800}.sub{color:var(--muted);font-size:12px;margin-top:2px}
 .panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:10px;box-shadow:0 2px 12px #00000008}.panel h3{font-size:15px;margin:0 0 4px}.panel p{font-size:12px;color:var(--muted);margin:0;line-height:1.45}
 label{display:block;font-size:12px;font-weight:750;color:#4d5865;margin:10px 2px 5px}input,select,textarea{width:100%;border:1px solid #dfe3e8;border-radius:12px;padding:11px 12px;background:#fff;outline:0}.grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.full{grid-column:1/-1}
 .photo-area{border:1px dashed #d7dce1;background:#f7f8fa;border-radius:16px;padding:12px}.photo-preview{display:none;width:100%;height:180px;object-fit:cover;border-radius:13px;margin-top:9px}.primary{height:48px;border:0;border-radius:13px;background:var(--dark);color:#fff;font-weight:750;width:100%;margin-top:15px}.secondary{height:46px;border:1px solid var(--line);border-radius:13px;background:#f3f4f6;color:var(--text);font-weight:700;width:100%;margin-top:8px}
 .detail-photo{width:100%;height:220px;object-fit:cover;border-radius:17px;margin-bottom:12px}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.detail-item{background:#f7f8fa;border-radius:13px;padding:11px}.detail-item small{display:block;color:var(--muted);font-size:10px}.detail-item b{font-size:13px}.qr{display:flex;flex-direction:column;align-items:center;background:#f7f8fa;border-radius:16px;padding:16px;margin-top:10px}.history-item{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}.history-item:last-child{border-bottom:0}
 .setting{display:flex;align-items:center;gap:12px;width:100%;border:1px solid var(--line);border-radius:15px;background:#fff;padding:12px;margin-top:9px;text-align:left}.setting-icon{width:40px;height:40px;border-radius:12px;background:#f0f2f5;display:grid;place-items:center;font-size:19px;flex:none}.setting b{font-size:13px}.setting span{display:block;color:var(--muted);font-size:11px;margin-top:2px}.chips{display:flex;flex-wrap:wrap;gap:7px;margin:9px 0}.chip{background:#eef1f4;border-radius:99px;padding:7px 10px;font-size:12px}.chip button{background:none;border:0;padding:0 0 0 5px;color:var(--muted)}.inline{display:flex;gap:8px}.inline button{width:48px;border:0;border-radius:12px;background:var(--dark);color:#fff;font-size:18px}
-.hidden{display:none!important}
+.backup-note{background:#f7f8fa;border-radius:13px;padding:11px;margin-top:10px;font-size:11px;color:var(--muted);line-height:1.4}
 @media(max-width:520px){.grid,.detail-grid{grid-template-columns:1fr}.full{grid-column:auto}}
 </style>
 </head>
 <body>
 <main class="app">
 
-<!-- HOME -->
-<section id="home" class="page active">
-<div class="top"><div class="title">🔧 Werkzeugverwaltung</div><button class="gear" onclick="openSettings()">⚙️</button></div>
+<section id="page-home" class="page active">
+<div class="top"><div class="title">🔧 Werkzeugverwaltung</div><button class="gear" onclick="go('settings')">⚙️</button></div>
 <div class="stats"><div class="stat"><small>Gesamt</small><strong id="total">0</strong></div><div class="stat"><small>Verfügbar</small><strong id="available">0</strong></div><div class="stat"><small>Verliehen</small><strong id="loaned">0</strong></div></div>
 <div class="actions"><button class="action main" onclick="openAdd()">＋ Werkzeug hinzufügen</button><button class="action" onclick="scanQR()">▣ QR-Code scannen</button></div>
-<input class="search" id="search" placeholder="Werkzeug suchen …" oninput="render()">
+<input id="search" class="search" placeholder="Werkzeug suchen …" oninput="render()">
 <div class="filters"><button class="filter active" onclick="setFilter('all',this)">Alle</button><button class="filter" onclick="setFilter('available',this)">Verfügbar</button><button class="filter" onclick="setFilter('loaned',this)">Verliehen</button></div>
 <div id="list" class="list"></div>
 </section>
 
-<!-- ADD -->
-<section id="add" class="page">
-<div class="page-head"><button class="back" onclick="showPage('home')">‹</button><div><div id="addTitle" class="page-title">Werkzeug hinzufügen</div><div class="sub">Neues Werkzeug erfassen</div></div></div>
-<form onsubmit="saveTool(event)">
+<section id="page-add" class="page">
+<div class="page-head"><button class="back" onclick="go('home')">‹</button><div><div id="addTitle" class="page-title">Werkzeug hinzufügen</div><div class="sub">Werkzeugdaten erfassen</div></div></div>
+<form id="toolForm" onsubmit="saveTool(event)">
 <input id="editId" type="hidden">
 <div class="panel">
 <div class="grid">
@@ -57,63 +57,67 @@ label{display:block;font-size:12px;font-weight:750;color:#4d5865;margin:10px 2px
 <div class="full"><label>Foto</label><div class="photo-area"><input id="photo" type="file" accept="image/*" capture="environment" onchange="previewPhoto(event)"><img id="photoPreview" class="photo-preview"></div></div>
 <div class="full"><label>Bemerkung</label><textarea id="note" rows="3"></textarea></div>
 </div>
-<button class="primary" type="submit">Speichern</button><button class="secondary" type="button" onclick="showPage('home')">Abbrechen</button>
+<button class="primary" type="submit">Speichern</button><button class="secondary" type="button" onclick="go('home')">Abbrechen</button>
 </div>
 </form>
 </section>
 
-<!-- DETAIL -->
-<section id="detailPage" class="page">
-<div class="page-head"><button class="back" onclick="showPage('home')">‹</button><div><div id="detailTitle" class="page-title">Werkzeug</div><div class="sub">Werkzeugdetails</div></div></div>
+<section id="page-detail" class="page">
+<div class="page-head"><button class="back" onclick="go('home')">‹</button><div><div id="detailTitle" class="page-title">Werkzeug</div><div class="sub">Werkzeugdetails</div></div></div>
 <div id="detailContent"></div>
 </section>
 
-<!-- SETTINGS -->
-<section id="settingsPage" class="page">
-<div class="page-head"><button class="back" onclick="showPage('home')">‹</button><div><div class="page-title">Einstellungen</div><div class="sub">App und Daten verwalten</div></div></div>
+<section id="page-settings" class="page">
+<div class="page-head"><button class="back" onclick="go('home')">‹</button><div><div class="page-title">Einstellungen</div><div class="sub">Standorte · Kategorien · Datensicherung</div></div></div>
+
 <div class="panel">
-<h3>📍 Standorte</h3><p>Standorte für die Werkzeugauswahl.</p>
-<div id="locationList" class="chips"></div><div class="inline"><input id="newLocation" placeholder="Neuen Standort"><button onclick="addLocation()">＋</button></div>
+<h3>📍 Standorte verwalten</h3><p>Hier legst du fest, welche Standorte bei Werkzeugen auswählbar sind.</p>
+<div id="locationList" class="chips"></div>
+<div class="inline"><input id="newLocation" placeholder="z. B. Werkstatt"><button onclick="addLocation()">＋</button></div>
 </div>
+
 <div class="panel">
-<h3>🏷️ Kategorien</h3><p>Kategorien für die Werkzeugauswahl.</p>
-<div id="categoryList" class="chips"></div><div class="inline"><input id="newCategory" placeholder="Neue Kategorie"><button onclick="addCategory()">＋</button></div>
+<h3>🏷️ Kategorien verwalten</h3><p>Hier legst du die Kategorien für deine Werkzeuge fest.</p>
+<div id="categoryList" class="chips"></div>
+<div class="inline"><input id="newCategory" placeholder="z. B. Akkuwerkzeug"><button onclick="addCategory()">＋</button></div>
 </div>
+
 <div class="panel">
-<h3>💾 Datensicherung</h3><p>Werkzeuge und Einstellungen sichern oder wiederherstellen.</p>
-<button class="setting" onclick="exportBackup()"><div class="setting-icon">⬇️</div><div><b>Sicherung erstellen</b><span>Aktuellen Datenbestand speichern</span></div></button>
+<h3>💾 Datensicherung</h3><p>Alle Werkzeuge, Fotos, Verleihhistorien, Standorte und Kategorien können gesichert und wiederhergestellt werden.</p>
+<button class="setting" onclick="exportBackup()"><div class="setting-icon">⬇️</div><div><b>Sicherung erstellen</b><span>Eine vollständige JSON-Sicherung herunterladen</span></div></button>
 <button class="setting" onclick="document.getElementById('backupFile').click()"><div class="setting-icon">⬆️</div><div><b>Sicherung wiederherstellen</b><span>Eine vorhandene Sicherungsdatei einspielen</span></div></button>
 <input id="backupFile" class="hidden" type="file" accept=".json,application/json" onchange="importBackup(event)">
+<div class="backup-note">Die Sicherungsdatei enthält den aktuellen Datenbestand dieser App. Für regelmäßige Sicherungen kannst du sie z. B. auf OneDrive ablegen.</div>
 <div id="backupStatus" class="sub" style="margin-top:9px"></div>
 </div>
 </section>
 </main>
 
-<nav class="bottom"><div class="nav">
-<button id="navHome" class="active" onclick="showPage('home');navActive('navHome')"><span>⌂</span>Übersicht</button>
-<button id="navAdd" onclick="openAdd();navActive('navAdd')"><span>＋</span>Hinzufügen</button>
-</div></nav>
+<nav class="bottom"><div class="nav"><button id="nav-home" class="active" onclick="go('home')"><span>⌂</span>Übersicht</button><button id="nav-add" onclick="openAdd()"><span>＋</span>Hinzufügen</button></div></nav>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 const TOOL_KEY='werkzeuge_v1',SETTINGS_KEY='werkzeuge_settings_v1';
 let tools=JSON.parse(localStorage.getItem(TOOL_KEY)||'[]');
-let settings=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null')||{
- locations:['Werkstatt','Lager','Firmenbus 1','Firmenbus 2'],
- categories:['Akkuwerkzeug','Handwerkzeug','Elektrowerkzeug','Messgerät','Maschinen','Gartengerät','Sonstiges']
-};
-settings.locations=settings.locations||['Werkstatt'];
-settings.categories=settings.categories||['Sonstiges'];
-let currentFilter='all';
+let settings=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'null')||{locations:['Werkstatt','Lager','Firmenbus 1','Firmenbus 2'],categories:['Akkuwerkzeug','Handwerkzeug','Elektrowerkzeug','Messgerät','Maschinen','Gartengerät','Sonstiges']};
+settings.locations=Array.isArray(settings.locations)?settings.locations:['Werkstatt'];
+settings.categories=Array.isArray(settings.categories)?settings.categories:['Sonstiges'];
+let filter='all';
 
-function saveData(){localStorage.setItem(TOOL_KEY,JSON.stringify(tools));localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));render();renderSettings()}
 function esc(x=''){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
-function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='settingsPage')renderSettings()}
-function navActive(id){document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));document.getElementById(id).classList.add('active')}
-function setFilter(f,b){currentFilter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
+function persist(){localStorage.setItem(TOOL_KEY,JSON.stringify(tools));localStorage.setItem(SETTINGS_KEY,JSON.stringify(settings));render();renderSettings()}
+function go(page){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ document.getElementById('page-'+page).classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));
+ if(page==='home'||page==='detail')document.getElementById('nav-home').classList.add('active');
+ if(page==='add')document.getElementById('nav-add').classList.add('active');
+ window.scrollTo(0,0);if(page==='settings')renderSettings();
+}
+function setFilter(f,b){filter=f;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');render()}
 function render(){
  const q=(document.getElementById('search')?.value||'').toLowerCase();
- const a=tools.filter(t=>(!q||[t.name,t.inventoryNo,t.brand,t.model,t.serial,t.category,t.location,t.loanedTo].join(' ').toLowerCase().includes(q))&&(currentFilter==='all'||(currentFilter==='loaned'?!!t.loanedTo:!t.loanedTo)));
+ const a=tools.filter(t=>(!q||[t.name,t.inventoryNo,t.brand,t.model,t.serial,t.category,t.location,t.loanedTo].join(' ').toLowerCase().includes(q))&&(filter==='all'||(filter==='loaned'?!!t.loanedTo:!t.loanedTo)));
  document.getElementById('total').textContent=tools.length;document.getElementById('available').textContent=tools.filter(t=>!t.loanedTo).length;document.getElementById('loaned').textContent=tools.filter(t=>t.loanedTo).length;
  document.getElementById('list').innerHTML=a.length?a.map(t=>`<div class="tool" onclick="openDetail('${t.id}')"><div class="toolrow"><div class="avatar">${t.photo?`<img src="${t.photo}">`:'🔧'}</div><div class="toolmain"><div class="toolname">${esc(t.inventoryNo||'–')} · ${esc(t.name)}</div><div class="meta">${esc([t.brand,t.model].filter(Boolean).join(' ')||'Keine Herstellerangabe')}</div></div><span class="badge ${t.loanedTo?'out':'ok'}">${t.loanedTo?'Verliehen':'Verfügbar'}</span></div><div class="toolfoot"><span>📍 ${esc(t.location||'Kein Standort')}</span><span>${t.loanedTo?'👤 '+esc(t.loanedTo):esc(t.category||'')}</span></div></div>`).join(''):'<div class="empty">🔧<br><b>Keine Werkzeuge</b><br><small>Füge dein erstes Werkzeug hinzu.</small></div>';
 }
@@ -125,42 +129,61 @@ function resetForm(t=null){
  document.getElementById('editId').value=t?.id||'';document.getElementById('inventoryNo').value=t?.inventoryNo||'';document.getElementById('name').value=t?.name||'';document.getElementById('brand').value=t?.brand||'';document.getElementById('model').value=t?.model||'';document.getElementById('serial').value=t?.serial||'';document.getElementById('note').value=t?.note||'';
  fillSelects(t?.category||'',t?.location||'');document.getElementById('photo').value='';const im=document.getElementById('photoPreview');im.src=t?.photo||'';im.style.display=t?.photo?'block':'none';
 }
-function openAdd(){showPage('add');navActive('navAdd');document.getElementById('addTitle').textContent='Werkzeug hinzufügen';resetForm()}
-function editTool(id){const t=tools.find(x=>x.id===id);if(!t)return;showPage('add');navActive('navAdd');document.getElementById('addTitle').textContent='Werkzeug bearbeiten';resetForm(t)}
+function openAdd(){document.getElementById('addTitle').textContent='Werkzeug hinzufügen';resetForm();go('add')}
+function editTool(id){const t=tools.find(x=>x.id===id);if(!t)return;document.getElementById('addTitle').textContent='Werkzeug bearbeiten';resetForm(t);go('add')}
 async function saveTool(e){
  e.preventDefault();const id=document.getElementById('editId').value||crypto.randomUUID();let t=tools.find(x=>x.id===id)||{id,history:[]};
  t.inventoryNo=document.getElementById('inventoryNo').value.trim();t.name=document.getElementById('name').value.trim();t.brand=document.getElementById('brand').value.trim();t.model=document.getElementById('model').value.trim();t.serial=document.getElementById('serial').value.trim();t.category=document.getElementById('category').value;t.location=document.getElementById('location').value;t.note=document.getElementById('note').value;
  const f=document.getElementById('photo').files[0];if(f)t.photo=await resizePhoto(f);
- if(!tools.some(x=>x.id===id))tools.push(t);saveData();showPage('home');navActive('navHome')
+ if(!tools.some(x=>x.id===id))tools.push(t);persist();go('home')
 }
 function resizePhoto(file){return new Promise(resolve=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const max=1000,sc=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*sc);c.height=Math.round(im.height*sc);c.getContext('2d').drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.78))};im.src=r.result};r.readAsDataURL(file)})}
 function previewPhoto(e){const f=e.target.files[0];if(!f)return;const im=document.getElementById('photoPreview');im.src=URL.createObjectURL(f);im.style.display='block'}
 function openDetail(id){
  const t=tools.find(x=>x.id===id);if(!t)return;document.getElementById('detailTitle').textContent=t.name;
- document.getElementById('detailContent').innerHTML=`<div class="panel">${t.photo?`<img class="detail-photo" src="${t.photo}">`:''}<div class="detail-grid"><div class="detail-item"><small>Inventarnummer</small><b>${esc(t.inventoryNo)||'–'}</b></div><div class="detail-item"><small>Status</small><b>${t.loanedTo?'Verliehen':'Verfügbar'}</b></div><div class="detail-item"><small>Hersteller</small><b>${esc(t.brand)||'–'}</b></div><div class="detail-item"><small>Modell</small><b>${esc(t.model)||'–'}</b></div><div class="detail-item"><small>Seriennummer</small><b>${esc(t.serial)||'–'}</b></div><div class="detail-item"><small>Kategorie</small><b>${esc(t.category)||'–'}</b></div><div class="detail-item"><small>Standort</small><b>${esc(t.location)||'–'}</b></div><div class="detail-item"><small>Verliehen an</small><b>${esc(t.loanedTo)||'–'}</b></div></div>${t.note?`<p style="font-size:12px;color:var(--muted);margin:12px 2px 0">📝 ${esc(t.note)}</p>`:''}
-<div class="qr"><b>QR-Code</b><div id="qr"></div><button class="secondary" onclick="printQR('${t.id}')">🖨️ QR-Code drucken</button></div>
-${t.loanedTo?`<button class="primary" onclick="returnTool('${t.id}')">↩ Werkzeug zurücknehmen</button>`:`<button class="primary" onclick="loanTool('${t.id}')">👤 Werkzeug verleihen</button>`}
-<button class="secondary" onclick="editTool('${t.id}')">✏️ Bearbeiten</button>
-<button class="secondary" onclick="deleteTool('${t.id}')">🗑️ Werkzeug löschen</button>
-${renderHistory(t)}</div>`;
- showPage('detailPage');navActive('navHome');if(window.QRCode)new QRCode(document.getElementById('qr'),{text:t.id,width:170,height:170})
+ document.getElementById('detailContent').innerHTML=`<div class="panel">${t.photo?`<img class="detail-photo" src="${t.photo}">`:''}<div class="detail-grid"><div class="detail-item"><small>Inventarnummer</small><b>${esc(t.inventoryNo)||'–'}</b></div><div class="detail-item"><small>Status</small><b>${t.loanedTo?'Verliehen':'Verfügbar'}</b></div><div class="detail-item"><small>Hersteller</small><b>${esc(t.brand)||'–'}</b></div><div class="detail-item"><small>Modell</small><b>${esc(t.model)||'–'}</b></div><div class="detail-item"><small>Seriennummer</small><b>${esc(t.serial)||'–'}</b></div><div class="detail-item"><small>Kategorie</small><b>${esc(t.category)||'–'}</b></div><div class="detail-item"><small>Standort</small><b>${esc(t.location)||'–'}</b></div><div class="detail-item"><small>Verliehen an</small><b>${esc(t.loanedTo)||'–'}</b></div></div>${t.note?`<p style="font-size:12px;color:var(--muted);margin:12px 2px">📝 ${esc(t.note)}</p>`:''}<div class="qr"><b>QR-Code</b><div id="qr"></div><button class="secondary" onclick="printQR('${t.id}')">🖨️ QR-Code drucken</button></div>${t.loanedTo?`<button class="primary" onclick="returnTool('${t.id}')">↩ Werkzeug zurücknehmen</button>`:`<button class="primary" onclick="loanTool('${t.id}')">👤 Werkzeug verleihen</button>`}<button class="secondary" onclick="editTool('${t.id}')">✏️ Bearbeiten</button><button class="secondary" onclick="deleteTool('${t.id}')">🗑️ Werkzeug löschen</button></div>${renderHistory(t)}`;
+ go('detail');if(window.QRCode)new QRCode(document.getElementById('qr'),{text:t.id,width:170,height:170})
 }
-function renderHistory(t){if(!t.history?.length)return'';return'<div class="panel" style="margin-top:10px"><b>Verleihhistorie</b>'+t.history.slice().reverse().map(h=>`<div class="history-item"><span>👤 ${esc(h.person)}<br><span style="color:var(--muted)">${esc(h.date)}</span></span><span>${h.returned?'↩ zurück':'🔴 verliehen'}</span></div>`).join('')+'</div>'}
-function loanTool(id){const t=tools.find(x=>x.id===id),p=prompt('Verliehen an:');if(p?.trim()){const d=new Date().toLocaleDateString('de-AT');t.loanedTo=p.trim();t.loanedDate=d;t.history=t.history||[];t.history.push({person:t.loanedTo,date:d,returned:false});saveData();openDetail(id)}}
-function returnTool(id){const t=tools.find(x=>x.id===id);t.history=t.history||[];for(let i=t.history.length-1;i>=0;i--){if(!t.history[i].returned){t.history[i].returned=true;t.history[i].returnDate=new Date().toLocaleDateString('de-AT');break}}t.loanedTo='';t.loanedDate='';saveData();openDetail(id)}
-function deleteTool(id){if(confirm('Werkzeug wirklich löschen?')){tools=tools.filter(t=>t.id!==id);saveData();showPage('home');navActive('navHome')}}
-function openSettings(){showPage('settingsPage');navActive('navHome');renderSettings()}
+function renderHistory(t){if(!t.history?.length)return'';return'<div class="panel"><b>Verleihhistorie</b>'+t.history.slice().reverse().map(h=>`<div class="history-item"><span>👤 ${esc(h.person)}<br><span style="color:var(--muted)">${esc(h.date)}</span></span><span>${h.returned?'↩ zurück':'🔴 verliehen'}</span></div>`).join('')+'</div>'}
+function loanTool(id){const t=tools.find(x=>x.id===id),p=prompt('Verliehen an:');if(p?.trim()){const d=new Date().toLocaleDateString('de-AT');t.loanedTo=p.trim();t.loanedDate=d;t.history=t.history||[];t.history.push({person:t.loanedTo,date:d,returned:false});persist();openDetail(id)}}
+function returnTool(id){const t=tools.find(x=>x.id===id);t.history=t.history||[];for(let i=t.history.length-1;i>=0;i--){if(!t.history[i].returned){t.history[i].returned=true;t.history[i].returnDate=new Date().toLocaleDateString('de-AT');break}}t.loanedTo='';t.loanedDate='';persist();openDetail(id)}
+function deleteTool(id){if(confirm('Werkzeug wirklich löschen?')){tools=tools.filter(t=>t.id!==id);persist();go('home')}}
 function renderSettings(){
- document.getElementById('locationList').innerHTML=settings.locations.map((x,i)=>`<span class="chip">${esc(x)}<button onclick="removeLocation(${i})">×</button></span>`).join('');
- document.getElementById('categoryList').innerHTML=settings.categories.map((x,i)=>`<span class="chip">${esc(x)}<button onclick="removeCategory(${i})">×</button></span>`).join('');
+ document.getElementById('locationList').innerHTML=settings.locations.map((x,i)=>`<span class="chip">${esc(x)}<button onclick="removeLocation(${i})">×</button></span>`).join('')||'<span class="sub">Keine Standorte angelegt.</span>';
+ document.getElementById('categoryList').innerHTML=settings.categories.map((x,i)=>`<span class="chip">${esc(x)}<button onclick="removeCategory(${i})">×</button></span>`).join('')||'<span class="sub">Keine Kategorien angelegt.</span>';
 }
-function addLocation(){const x=document.getElementById('newLocation').value.trim();if(x&&!settings.locations.includes(x)){settings.locations.push(x);document.getElementById('newLocation').value='';saveData()}}
-function removeLocation(i){if(confirm('Standort aus der Auswahl entfernen?')){settings.locations.splice(i,1);saveData()}}
-function addCategory(){const x=document.getElementById('newCategory').value.trim();if(x&&!settings.categories.includes(x)){settings.categories.push(x);document.getElementById('newCategory').value='';saveData()}}
-function removeCategory(i){if(confirm('Kategorie aus der Auswahl entfernen?')){settings.categories.splice(i,1);saveData()}}
-function exportBackup(){const data={app:'Werkzeugverwaltung',version:9,exportedAt:new Date().toISOString(),tools,settings};const b=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='werkzeugverwaltung-sicherung-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(u);document.getElementById('backupStatus').textContent='Sicherung erstellt.'}
-function importBackup(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.tools))throw 0;const st=d.settings||{};tools=d.tools;settings={locations:Array.isArray(st.locations)?st.locations:settings.locations,categories:Array.isArray(st.categories)?st.categories:settings.categories};saveData();document.getElementById('backupStatus').textContent='Sicherung erfolgreich eingespielt.';alert('Sicherung erfolgreich eingespielt.')}catch{alert('Ungültige Sicherungsdatei.')} };r.readAsText(f);e.target.value=''}
-function scanQR(){alert('Der QR-Scanner wird im nächsten Schritt mit der Kamera verbunden. Die QR-Codes sind bereits je Werkzeug vorhanden.')}
+function addLocation(){const x=document.getElementById('newLocation').value.trim();if(x&&!settings.locations.includes(x)){settings.locations.push(x);document.getElementById('newLocation').value='';persist()}}
+function removeLocation(i){if(confirm('Standort aus der Auswahl entfernen?')){settings.locations.splice(i,1);persist()}}
+function addCategory(){const x=document.getElementById('newCategory').value.trim();if(x&&!settings.categories.includes(x)){settings.categories.push(x);document.getElementById('newCategory').value='';persist()}}
+function removeCategory(i){if(confirm('Kategorie aus der Auswahl entfernen?')){settings.categories.splice(i,1);persist()}}
+function exportBackup(){
+ const data={app:'Werkzeugverwaltung',version:10,exportedAt:new Date().toISOString(),tools:tools,settings:settings};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download='werkzeugverwaltung-sicherung-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(url);
+ document.getElementById('backupStatus').textContent='✓ Vollständige Sicherung wurde erstellt.';
+}
+function importBackup(e){
+ const file=e.target.files[0];if(!file)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  try{
+   const d=JSON.parse(r.result);
+   if(!Array.isArray(d.tools))throw new Error('tools');
+   const st=d.settings||{};
+   if(!confirm('Aktuelle Daten durch diese Sicherung ersetzen?'))return;
+   tools=d.tools;
+   settings={
+    locations:Array.isArray(st.locations)?st.locations:settings.locations,
+    categories:Array.isArray(st.categories)?st.categories:settings.categories
+   };
+   persist();renderSettings();
+   document.getElementById('backupStatus').textContent='✓ Sicherung erfolgreich eingespielt.';
+   alert('Sicherung erfolgreich eingespielt.');
+  }catch(err){alert('Die Sicherungsdatei konnte nicht eingespielt werden.')}
+ };
+ r.readAsText(file);e.target.value='';
+}
+function scanQR(){alert('Der QR-Code-Scanner wird als nächster Schritt mit der Kamera verbunden. Die Werkzeug-QR-Codes sind bereits vorhanden.')}
 function printQR(id){const t=tools.find(x=>x.id===id);if(!t)return;const w=window.open('','_blank','width=420,height=520');w.document.write(`<html><body style="font-family:Arial;text-align:center;padding:25px"><h2>Werkzeugverwaltung</h2><div id="q"></div><h3>${esc(t.inventoryNo)}</h3><div>${esc(t.name)}</div><script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"><\/script><script>new QRCode(document.getElementById('q'),{text:${JSON.stringify(t.id)},width:220,height:220});setTimeout(()=>window.print(),700)<\/script></body></html>`);w.document.close()}
 render();renderSettings();
 </script>
