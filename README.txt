@@ -1,16 +1,8 @@
-WERKZEUGVERWALTUNG V7
+WERKZEUGVERWALTUNG V8
 
-Neue Funktionen:
-- Foto je Werkzeug (auch Kamera auf mobilen Geräten)
-- Kategorien als Vorauswahl in Einstellungen
-- Verleihhistorie
-- QR-Code je Werkzeug
-- QR-Code kann aus der Werkzeugansicht gedruckt werden
-- Verleihen an und Rückgabe bleiben frei eingabebasiert
-- Standort-Vorauswahl
-- Datensicherung inkl. Kategorien
-- V6 App-Layout bleibt erhalten
-- alte Sicherungen bleiben kompatibel
-
-Hinweis:
-QR-Codes nutzen die Inventar-/Werkzeug-ID als eindeutige Kennung.
+V8 behebt die Trennung der Menüs:
+- Hinzufügen zeigt ausschließlich das Werkzeugformular.
+- Einstellungen zeigt ausschließlich Standorte, Kategorien und Datensicherung.
+- Werkzeugdetails zeigen ausschließlich die Werkzeugansicht.
+- Die drei Bereiche werden über einen eigenen Modal-Modus strikt voneinander getrennt.
+- V7-Funktionen bleiben erhalten: Foto, QR-Code, Verleihhistorie, Kategorien, Standorte, Sicherung.

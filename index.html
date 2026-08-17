@@ -90,6 +90,14 @@ input:focus,select:focus,textarea:focus{border-color:#9da6b1;box-shadow:0 0 0 3p
 .qr-box{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#f7f8fa;border-radius:17px;padding:18px;margin-top:12px}
 #qrcode img,#qrcode canvas{max-width:180px}
 .history{margin-top:12px}.history-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid #e8ebef;font-size:12px}.history-item:last-child{border-bottom:0}
+
+/* V8: modal modes are mutually exclusive */
+#form.view-hidden,#detail.view-hidden,#settings.view-hidden{display:none!important}
+.mode-add .sheet-head{border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:4px}
+.mode-settings .sheet-head{border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:8px}
+.mode-detail .sheet-head{border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:4px}
+.settings-only{display:block}
+.add-only{display:block}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
@@ -140,7 +148,7 @@ input:focus,select:focus,textarea:focus{border-color:#9da6b1;box-shadow:0 0 0 3p
     <button class="close" onclick="closeModal()">✕</button>
   </div>
 
-  <form id="form" onsubmit="saveTool(event)">
+  <form id="form" class="view-hidden" onsubmit="saveTool(event)">
     <input type="hidden" id="editId">
     <div class="grid">
       <div><label>Inventarnummer *</label><input id="inventoryNo" required placeholder="z. B. WZ-0001"></div>
@@ -163,9 +171,9 @@ input:focus,select:focus,textarea:focus{border-color:#9da6b1;box-shadow:0 0 0 3p
     <div class="form-actions"><button class="primary" type="submit">Speichern</button><button class="secondary" type="button" onclick="closeModal()">Abbrechen</button></div>
   </form>
 
-  <div id="detail" class="hidden"></div>
+  <div id="detail" class="view-hidden"></div>
 
-  <div id="settings" class="hidden">
+  <div id="settings" class="view-hidden">
     <div class="section-card">
       <h3>📍 Standorte verwalten</h3>
       <p>Lege hier die Standorte fest, die beim Anlegen eines Werkzeugs auswählbar sind.</p>
@@ -238,12 +246,23 @@ function fillCategories(selected=''){
 function fillLocations(selected=''){
  document.getElementById('location').innerHTML='<option value="">Kein Standort</option>'+settings.locations.map(x=>`<option value="${esc(x)}" ${x===selected?'selected':''}>${esc(x)}</option>`).join('');
 }
+
+function setModalMode(mode){
+ const sheet=document.getElementById('mainSheet');
+ const form=document.getElementById('form');
+ const detail=document.getElementById('detail');
+ const settingsEl=document.getElementById('settings');
+ sheet.className='sheet mode-'+mode;
+ form.classList.toggle('view-hidden',mode!=='add');
+ detail.classList.toggle('view-hidden',mode!=='detail');
+ settingsEl.classList.toggle('view-hidden',mode!=='settings');
+}
+
 function openForm(t=null){
- document.getElementById('mainSheet').className='sheet add-sheet';
+ setModalMode('add');
  document.getElementById('sheetIcon').textContent=t?'✏️':'＋';
  document.getElementById('sheetSubtitle').textContent=t?'Daten des Werkzeugs bearbeiten':'Neues Werkzeug in die Verwaltung aufnehmen';
  document.getElementById('modalTitle').textContent=t?'Werkzeug bearbeiten':'Werkzeug hinzufügen';
- document.getElementById('form').classList.remove('hidden');document.getElementById('detail').classList.add('hidden');document.getElementById('settings').classList.add('hidden');
  document.getElementById('editId').value=t?.id||'';document.getElementById('inventoryNo').value=t?.inventoryNo||'';document.getElementById('name').value=t?.name||'';
  ['brand','model','serial','category','note'].forEach(k=>document.getElementById(k).value=t?.[k]||'');
  document.getElementById('condition').value=t?.condition||'Sehr gut';
