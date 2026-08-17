@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#111827">
+<link rel="manifest" href="manifest.json">
+<title>Werkzeuginventur</title>
+<style>
+:root{font-family:Arial,sans-serif;color:#111827;background:#f3f4f6}
+*{box-sizing:border-box}body{margin:0}.app{max-width:900px;margin:auto;padding:18px}
+header{background:#111827;color:white;padding:18px;border-radius:16px;margin-bottom:14px}
+h1{margin:0 0 4px;font-size:24px}.muted{color:#6b7280;font-size:13px}
+header .muted{color:#d1d5db}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0}
+.card{background:white;border-radius:14px;padding:15px;box-shadow:0 1px 4px #0001}
+.stat b{font-size:24px;display:block}.actions{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:14px}
+button{border:0;border-radius:12px;padding:13px 14px;font-size:15px;font-weight:600;cursor:pointer;background:#111827;color:white}
+button.secondary{background:white;color:#111827;border:1px solid #d1d5db}
+button.danger{background:#b91c1c}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+input,select,textarea{width:100%;padding:11px;border:1px solid #d1d5db;border-radius:10px;font-size:15px}
+label{font-size:13px;font-weight:600;display:block;margin:10px 0 5px}
+.item{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.badge{padding:5px 8px;border-radius:999px;background:#dcfce7;color:#166534;font-size:12px;font-weight:700}
+.badge.out{background:#fee2e2;color:#991b1b}.modal{position:fixed;inset:0;background:#0008;display:none;align-items:flex-end;justify-content:center}
+.modal.open{display:flex}.sheet{background:white;width:min(900px,100%);max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.hidden{display:none!important}
+@media(max-width:600px){.stats{grid-template-columns:1fr 1fr 1fr}.grid{grid-template-columns:1fr}.full{grid-column:auto}}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+<h1>🔧 Werkzeuginventur</h1>
+<div class="muted">Werkzeuge verwalten · verleihen · zurücknehmen</div>
+</header>
+
+<div class="stats">
+<div class="card stat"><span class="muted">Gesamt</span><b id="total">0</b></div>
+<div class="card stat"><span class="muted">Verfügbar</span><b id="available">0</b></div>
+<div class="card stat"><span class="muted">Verliehen</span><b id="loaned">0</b></div>
+</div>
+
+<div class="actions">
+<button onclick="openForm()">＋ Werkzeug hinzufügen</button>
+<button onclick="scanQR()">📷 QR-Code scannen</button>
+</div>
+
+<div class="toolbar">
+<input id="search" placeholder="Werkzeug suchen …" oninput="render()">
+<select id="filter" onchange="render()">
+<option value="all">Alle</option><option value="available">Verfügbar</option><option value="loaned">Verliehen</option>
+</select>
+</div>
+
+<div id="list"></div>
+</div>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closeModal()">
+<div class="sheet">
+<div class="row"><h2 id="modalTitle" style="margin-top:0;flex:1">Werkzeug</h2><button class="secondary" style="flex:0 0 auto" onclick="closeModal()">✕</button></div>
+<form id="form" onsubmit="saveTool(event)">
+<input type="hidden" id="editId">
+<div class="grid">
+<div class="full"><label>Bezeichnung *</label><input id="name" required></div>
+<div><label>Hersteller</label><input id="brand"></div>
+<div><label>Modell</label><input id="model"></div>
+<div><label>Seriennummer</label><input id="serial"></div>
+<div><label>Kategorie</label><input id="category" placeholder="z. B. Akkuwerkzeug"></div>
+<div><label>Kaufdatum</label><input id="purchaseDate" type="date"></div>
+<div><label>Kaufpreis (€)</label><input id="price" type="number" step="0.01"></div>
+<div><label>Standort</label><input id="location" placeholder="z. B. Werkstatt"></div>
+<div><label>Zustand</label><select id="condition"><option>Sehr gut</option><option>Gut</option><option>Gebraucht</option><option>Defekt</option></select></div>
+<div class="full"><label>Bemerkung</label><textarea id="note" rows="3"></textarea></div>
+</div>
+<div style="margin-top:14px" class="row"><button type="submit">Speichern</button><button type="button" class="secondary" onclick="closeModal()">Abbrechen</button></div>
+</form>
+<div id="detail" class="hidden"></div>
+</div></div>
+
+<script>
+let tools=JSON.parse(localStorage.getItem('werkzeuge_v1')||'[]');
+
+function persist(){localStorage.setItem('werkzeuge_v1',JSON.stringify(tools));render()}
+function esc(s=''){return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function render(){
+ const q=document.getElementById('search').value.toLowerCase();
+ const f=document.getElementById('filter').value;
+ let a=tools.filter(t=>(!q||[t.name,t.brand,t.model,t.serial,t.category,t.location,t.loanedTo].join(' ').toLowerCase().includes(q))&&(f==='all'||(f==='loaned'?t.loanedTo:f==='available'&&!t.loanedTo)));
+ document.getElementById('total').textContent=tools.length;
+ document.getElementById('available').textContent=tools.filter(t=>!t.loanedTo).length;
+ document.getElementById('loaned').textContent=tools.filter(t=>t.loanedTo).length;
+ document.getElementById('list').innerHTML=a.length?a.map(t=>`
+ <div class="card" style="margin-bottom:9px" onclick="showTool('${t.id}')">
+  <div class="item"><div><b>${esc(t.name)}</b><div class="muted">${esc([t.brand,t.model].filter(Boolean).join(' '))}</div></div>
+  <span class="badge ${t.loanedTo?'out':''}">${t.loanedTo?'Verliehen':'Verfügbar'}</span></div>
+  ${t.loanedTo?`<div class="muted" style="margin-top:8px">👤 ${esc(t.loanedTo)} · seit ${esc(t.loanedDate||'')}</div>`:''}
+ </div>`).join(''):'<div class="card muted">Noch keine Werkzeuge angelegt.</div>';
+}
+function openForm(t=null){
+ document.getElementById('modalTitle').textContent=t?'Werkzeug bearbeiten':'Werkzeug hinzufügen';
+ document.getElementById('form').classList.remove('hidden');document.getElementById('detail').classList.add('hidden');
+ ['editId','name','brand','model','serial','category','purchaseDate','price','location','note'].forEach(id=>document.getElementById(id).value=t?(t[id]||''):'');
+ document.getElementById('condition').value=t?(t.condition||'Sehr gut'):'Sehr gut';
+ document.getElementById('modal').classList.add('open');
+}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+function saveTool(e){
+ e.preventDefault();const id=document.getElementById('editId').value||crypto.randomUUID();let t=tools.find(x=>x.id===id)||{id,created:new Date().toISOString()};
+ ['name','brand','model','serial','category','purchaseDate','price','location','note','condition'].forEach(k=>t[k]=document.getElementById(k).value);
+ if(!tools.find(x=>x.id===id))tools.push(t);persist();closeModal();
+}
+function showTool(id){
+ const t=tools.find(x=>x.id===id);if(!t)return;
+ document.getElementById('modalTitle').textContent=t.name;
+ document.getElementById('form').classList.add('hidden');document.getElementById('detail').classList.remove('hidden');
+ document.getElementById('detail').innerHTML=`
+ <div class="card"><b>Status:</b> <span class="badge ${t.loanedTo?'out':''}">${t.loanedTo?'Verliehen':'Verfügbar'}</span>
+ ${t.loanedTo?`<p>👤 <b>${esc(t.loanedTo)}</b><br><span class="muted">seit ${esc(t.loanedDate||'')}</span></p>`:''}
+ <p>${esc(t.brand)} ${esc(t.model)}<br>Seriennummer: ${esc(t.serial)||'–'}<br>Kategorie: ${esc(t.category)||'–'}<br>Standort: ${esc(t.location)||'–'}<br>Zustand: ${esc(t.condition)||'–'}</p>
+ <div class="row">
+ <button onclick="editTool('${t.id}')">Bearbeiten</button>
+ ${t.loanedTo?`<button class="secondary" onclick="returnTool('${t.id}')">↩ Zurück</button>`:`<button onclick="loanTool('${t.id}')">👤 Verleihen</button>`}
+ </div>
+ <button class="danger" style="width:100%;margin-top:8px" onclick="deleteTool('${t.id}')">Werkzeug löschen</button></div>`;
+ document.getElementById('modal').classList.add('open');
+}
+function editTool(id){openForm(tools.find(t=>t.id===id))}
+function loanTool(id){
+ const t=tools.find(x=>x.id===id), p=prompt('Verliehen an:');
+ if(p&&p.trim()){t.loanedTo=p.trim();t.loanedDate=new Date().toLocaleDateString('de-AT');persist();closeModal()}
+}
+function returnTool(id){const t=tools.find(x=>x.id===id);t.loanedTo='';t.loanedDate='';persist();closeModal()}
+function deleteTool(id){if(confirm('Werkzeug wirklich löschen?')){tools=tools.filter(t=>t.id!==id);persist();closeModal()}}
+async function scanQR(){
+ if(!('BarcodeDetector' in window)){alert('QR-Scanner ist in diesem Browser nicht verfügbar. Auf dem iPhone kann die Funktion später als native App ergänzt werden.');return}
+ alert('QR-Scanner-Vorschau: Kamera-Scan wird in der nächsten Version mit der Werkzeug-ID verknüpft.');
+}
+render();
+</script>
+</body>
+</html>
