@@ -1,17 +1,19 @@
-Werkzeugverwaltung V2
+WERKZEUGVERWALTUNG V3
+
+Diese Version ist als sauberer kompletter Upload gedacht.
 
 Enthalten:
-- Werkzeugverwaltung als App-Titel
+- App-Titel: Werkzeugverwaltung
 - Inventarnummer
-- Standort-Vorauswahl
-- Standorte in den Einstellungen verwalten
+- Bezeichnung, Hersteller, Modell, Seriennummer
+- Kategorie, Standort, Zustand, Bemerkung
+- Standort-Vorauswahl über Einstellungen
+- Verleihen an / Rückgabe
+- Suche und Filter
 - Datensicherung exportieren und wieder einspielen
-- Werkzeug suchen und filtern
-- Verleihen und Rückgabe
+- Keine Kaufdaten
 
-Nächste Schritte:
-- echter QR-Code-Scanner und QR-Code-Erzeugung
-- Foto je Werkzeug
-- Personenverwaltung für „Verliehen an“
-- dauerhafte Cloud-Synchronisierung / Anmeldung
-- Inventurmodus
+Für GitHub:
+1. Alle drei Dateien hochladen.
+2. Vorhandene index.html ersetzen.
+3. Commit changes.
