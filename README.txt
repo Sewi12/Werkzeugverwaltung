@@ -1,19 +1,14 @@
-WERKZEUGVERWALTUNG V3
+WERKZEUGVERWALTUNG V4
 
-Diese Version ist als sauberer kompletter Upload gedacht.
+V4 legt den Schwerpunkt auf ein echtes App-Layout:
+- ruhige, kompakte Oberfläche
+- feste mobile Navigation unten
+- große Karten statt frei fliegender Website-Elemente
+- Suche und Filter als App-Controls
+- Werkzeugkarten mit Status und Standort
+- Einstellungen als eigenes App-Fenster
+- Inventarnummer, Standort-Vorauswahl, Verleih/Rückgabe
+- Datensicherung exportieren/wiederherstellen
 
-Enthalten:
-- App-Titel: Werkzeugverwaltung
-- Inventarnummer
-- Bezeichnung, Hersteller, Modell, Seriennummer
-- Kategorie, Standort, Zustand, Bemerkung
-- Standort-Vorauswahl über Einstellungen
-- Verleihen an / Rückgabe
-- Suche und Filter
-- Datensicherung exportieren und wieder einspielen
-- Keine Kaufdaten
-
-Für GitHub:
-1. Alle drei Dateien hochladen.
-2. Vorhandene index.html ersetzen.
-3. Commit changes.
+Upload:
+Alle Dateien aus diesem Ordner auf GitHub hochladen und die vorhandene index.html ersetzen.
